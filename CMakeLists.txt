@@ -10,5 +10,12 @@ set(WITH_ZEPHYR_LIB 1)
 set(WITH_DOC OFF CACHE BOOL "" FORCE)
 set(WITH_DEFAULT_LOGGER OFF CACHE BOOL "" FORCE)
 
+if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "posix")
+	# When building Zephyr for the POSIX architecture
+	# CMAKE_SYSTEM_PROCESSOR is set to POSIX. We need
+	# to set it to something that exists.
+	set(METAL_PROCESSOR_HEADERS_ON_SYSTEM 1)
+endif()
+
 add_subdirectory(${CONFIG_LIBMETAL_SRC_PATH} libmetal)
 endif()
